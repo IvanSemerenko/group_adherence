@@ -1,11 +1,8 @@
 <?php
 
-class Group_Adherence_Block_Adminhtml_Adherence_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+class Group_Adherence_Block_Adminhtml_Adherence_Edit_Form
+    extends Mage_Adminhtml_Block_Widget_Form
 {
-
-    /**
-     * Init form
-     */
     public function __construct()
     {
         parent::__construct();
@@ -15,7 +12,6 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit_Form extends Mage_Adminhtml
 
     protected function _prepareForm()
     {
-        $model = Mage::registry('adherence_rule');
         $form = new Varien_Data_Form(
             array(
                 'id' => 'edit_form',
@@ -25,8 +21,6 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit_Form extends Mage_Adminhtml
         );
 
         $form->setHtmlIdPrefix('rule_');
-
-        $form->setValues($model->getData());
         $form->setUseContainer(true);
         $this->setForm($form);
 

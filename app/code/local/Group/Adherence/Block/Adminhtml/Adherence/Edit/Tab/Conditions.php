@@ -1,11 +1,8 @@
 <?php
 
-class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Conditions extends Mage_Adminhtml_Block_Widget_Form
+class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Conditions
+    extends Mage_Adminhtml_Block_Widget_Form
 {
-
-    /**
-     * Init form
-     */
     public function __construct()
     {
         parent::__construct();

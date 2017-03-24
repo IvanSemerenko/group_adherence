@@ -2,9 +2,6 @@
 
 class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Rule extends Mage_Adminhtml_Block_Widget_Form
 {
-    /**
-     * Init form
-     */
     public function __construct()
     {
         parent::__construct();
@@ -25,6 +22,10 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Rule extends Mage_Admin
                 'legend'=>Mage::helper('adherence')->__('Rule Information')
             )
         );
+
+        $fieldset->addField('auto_apply', 'hidden', array(
+            'name' => 'auto_apply',
+        ));
 
         if ($model->getRuleId()) {
             $fieldset->addField('rule_id', 'hidden', array(

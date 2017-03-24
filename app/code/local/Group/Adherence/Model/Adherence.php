@@ -9,14 +9,9 @@ class Group_Adherence_Model_Adherence extends Mage_Rule_Model_Abstract
 
     public function getConditionsInstance()
     {
-        return Mage::getModel('catalogrule/rule_condition_combine');
+        return Mage::getModel('group_adherence/rules_combinations');
     }
 
-    /**
-     * Getter for rule actions collection
-     *
-     * @return Mage_CatalogRule_Model_Rule_Action_Collection
-     */
     public function getActionsInstance()
     {
         return Mage::getModel('catalogrule/rule_action_collection');
@@ -25,7 +20,7 @@ class Group_Adherence_Model_Adherence extends Mage_Rule_Model_Abstract
     protected function _beforeSave()
     {
         parent::_beforeSave();
-        if (is_array($this->getData('groups_serialized'))) {
+            if (is_array($this->getData('groups_serialized'))) {
             $this->setData('groups_serialized',serialize($this->getData('groups_serialized')));
         }
 
@@ -44,5 +39,20 @@ class Group_Adherence_Model_Adherence extends Mage_Rule_Model_Abstract
         if (is_string($this->getData('websites_serialized'))) {
             $this->setData('websites_serialized',unserialize($this->getData('websites_serialized')));
         }
+    }
+
+    public function applyAll()
+    {
+
+        //$this->getResourceCollection()->walk(array($this->_getResource(), 'updateRuleProductData'));
+        $this->_getResource()->applyAllRules();
+//        $this->_invalidateCache();
+//        $indexProcess = Mage::getSingleton('index/indexer')->getProcessByCode('catalog_product_price');
+//        if ($indexProcess) {
+//            $indexProcess->reindexAll();
+//        }
+        echo '<pre>';
+        print_r($this->_getResource());
+        echo '</pre>';die;
     }
 }

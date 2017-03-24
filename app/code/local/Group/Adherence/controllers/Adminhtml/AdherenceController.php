@@ -1,6 +1,7 @@
 <?php
 
-class Group_Adherence_Adminhtml_AdherenceController extends Mage_Adminhtml_Controller_Action
+class Group_Adherence_Adminhtml_AdherenceController
+    extends Mage_Adminhtml_Controller_Action
 {
     public function indexAction()
     {
@@ -38,21 +39,59 @@ class Group_Adherence_Adminhtml_AdherenceController extends Mage_Adminhtml_Contr
                 unset($data['rule']);
             }
 
+            $autoApply = false;
+            if (!empty($data['auto_apply'])) {
+                $autoApply = true;
+                unset($data['auto_apply']);
+            }
+
+            if(!isset($data['groups_serialized'])) {
+                $data['groups_serialized'] = array();
+            }
+
+            if(!isset($data['websites_serialized'])) {
+                $data['websites_serialized'] = array();
+            }
+
             $rule->loadPost($data)->save();
 
             if (!$rule->getId()) {
                 Mage::getSingleton('adminhtml/session')->addError('Cannot save the Rule!');
             }
 
+            if ($autoApply) {
+                $this->getRequest()->setParam('rule_id', $rule->getId());
+                $this->_forward('applyRules');
+            }
         } catch(Exception $e) {
             Mage::logException($e);
             Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
             Mage::getSingleton('adminhtml/session')->setBlockObject($rule->getdata());
         }
 
-        Mage::getSingleton('adminhtml/session')->addSuccess('Rule was save successfully');
+        Mage::getSingleton('adminhtml/session')
+            ->addSuccess(Mage::helper('adherence')->__('Rule was save successfully'));
 
         $this->_redirect('*/*/'.$this->getRequest()->getParam('back','index'),array('rule_id'=>$rule->getId()));
+    }
+
+    public function applyRulesAction()
+    {
+        $errorMessage = Mage::helper('catalogrule')->__('Unable to apply rules.');
+        try {
+            //Mage::getModel('group_adherence/adherence')->applyAll();
+//            Mage::getModel('catalogrule/flag')->loadSelf()
+//                ->setState(0)
+//                ->save();
+        } catch (Mage_Core_Exception $e) {
+            Mage::getSingleton('adminhtml/session')
+                ->addError($errorMessage . ' ' . $e->getMessage());
+        } catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')
+                ->addError($errorMessage);
+            Mage::logException($e);
+        }
+        $this->_redirect('*/*');
     }
 
     public function deleteAction()
