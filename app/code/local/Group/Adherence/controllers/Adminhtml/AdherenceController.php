@@ -79,10 +79,15 @@ class Group_Adherence_Adminhtml_AdherenceController
     {
         $errorMessage = Mage::helper('catalogrule')->__('Unable to apply rules.');
         try {
-            //Mage::getModel('group_adherence/adherence')->applyAll();
-//            Mage::getModel('catalogrule/flag')->loadSelf()
-//                ->setState(0)
-//                ->save();
+            $id = $this->getRequest()->getParam('rule_id');
+
+            if($id) {
+                Mage::getModel('group_adherence/adherence')->applyRule($id);
+            }else{
+                Mage::getModel('group_adherence/adherence')->applyAll();
+            }
+            Mage::getSingleton('adminhtml/session')
+                ->addSuccess(Mage::helper('adherence')->__('The rules have been applied.'));
         } catch (Mage_Core_Exception $e) {
             Mage::getSingleton('adminhtml/session')
                 ->addError($errorMessage . ' ' . $e->getMessage());

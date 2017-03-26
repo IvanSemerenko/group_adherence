@@ -3,6 +3,12 @@
 class Group_Adherence_Model_Rules_Combinations
     extends Mage_Rule_Model_Condition_Combine
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setType('group_adherence/rules_combinations');
+    }
+
     public function getNewChildSelectOptions()
     {
         $grandPeriod = Mage::getModel('group_adherence/rules_condition_grand');
@@ -41,5 +47,14 @@ class Group_Adherence_Model_Rules_Combinations
         ));
 
         return $conditions;
+    }
+
+    public function collectValidatedAttributes($customerCollection)
+    {
+        foreach ($this->getConditions() as $condition) {
+            $condition->collectValidatedAttributes($customerCollection);
+        }
+
+        return $this;
     }
 }

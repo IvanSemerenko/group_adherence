@@ -58,4 +58,13 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <group_adherence>
+                <run>
+                    <model>group_adherence/cron::applyAll</model>
+                </run>
+            </group_adherence>
+        </jobs>
+    </crontab>
 </config>
