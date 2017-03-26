@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
 class Group_Adherence_Model_Rules_Condition_User
     extends Mage_Rule_Model_Condition_Abstract
 {
@@ -20,9 +25,7 @@ class Group_Adherence_Model_Rules_Condition_User
     public function loadAttributeOptions()
     {
         $attributes = array();
-
         $this->_addSpecialAttributes($attributes);
-
         $this->setAttributeOption($attributes);
 
         return $this;

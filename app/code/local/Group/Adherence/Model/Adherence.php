@@ -1,6 +1,12 @@
 <?php
 
-class Group_Adherence_Model_Adherence extends Mage_Rule_Model_Abstract
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
+class Group_Adherence_Model_Adherence
+    extends Mage_Rule_Model_Abstract
 {
     protected $_customerIds;
 
@@ -74,10 +80,10 @@ class Group_Adherence_Model_Adherence extends Mage_Rule_Model_Abstract
 
     public function applyAll()
     {
-        $customerCollection = Mage::getModel('group_adherence/adherence')
+        Mage::getModel('group_adherence/adherence')
             ->getCollection()
-            ->setOrder('hierarchy', 'ASC');
-        $customerCollection->walk(array($this->_getResource(), 'updateRuleCustomerData'));
+            ->setOrder('hierarchy', 'DESC')
+            ->walk(array($this->_getResource(), 'updateRuleCustomerData'));
     }
 
     public function applyRule($id)

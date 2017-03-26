@@ -1,6 +1,12 @@
 <?php
 
-class Group_Adherence_Block_Adminhtml_Adherence_Grid extends Mage_Adminhtml_Block_Widget_Grid
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
+class Group_Adherence_Block_Adminhtml_Adherence_Grid
+    extends Mage_Adminhtml_Block_Widget_Grid
 {
     public function __construct()
     {
@@ -94,11 +100,6 @@ class Group_Adherence_Block_Adminhtml_Adherence_Grid extends Mage_Adminhtml_Bloc
         return $this;
     }
 
-    /**
-     * Row click url
-     *
-     * @return string
-     */
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/edit', array('rule_id' => $row->getId()));

@@ -1,6 +1,11 @@
 <?php
 
-class Group_Adherence_Model_Source_Status
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
+class Group_Adherence_Model_Adminhtml_System_Config_Source_Status
 {
     const ENABLED = '1';
     const DISABLED = '0';

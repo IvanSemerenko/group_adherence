@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
 class Group_Adherence_Model_Rules_Condition_Grand
     extends Mage_Rule_Model_Condition_Abstract
 {
@@ -20,9 +25,7 @@ class Group_Adherence_Model_Rules_Condition_Grand
     public function loadAttributeOptions()
     {
         $attributes = array();
-
         $this->_addSpecialAttributes($attributes);
-
         $this->setAttributeOption($attributes);
 
         return $this;
@@ -59,7 +62,6 @@ class Group_Adherence_Model_Rules_Condition_Grand
     public function loadArray($arr)
     {
         parent::loadArray($arr);
-
         $this->setPeriodValue(isset($arr['period_value']) ? $arr['period_value'] : false);
 
         return $this;

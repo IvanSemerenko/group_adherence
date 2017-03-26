@@ -1,6 +1,12 @@
 <?php
 
-class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Rule extends Mage_Adminhtml_Block_Widget_Form
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
+class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Rule
+    extends Mage_Adminhtml_Block_Widget_Form
 {
     public function __construct()
     {
@@ -93,7 +99,7 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit_Tab_Rule extends Mage_Admin
             'title'     => Mage::helper('adherence')->__('Status'),
             'name'      => 'rule_status',
             'required'  => true,
-            'options'   => Mage::getModel('group_adherence/source_status')->toArray(),
+            'options'   => Mage::getModel('group_adherence/adminhtml_system_config_source_status')->toArray(),
         ));
 
         $form->setValues($model->getData());

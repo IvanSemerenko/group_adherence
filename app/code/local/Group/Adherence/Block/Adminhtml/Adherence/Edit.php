@@ -1,6 +1,12 @@
 <?php
 
-class Group_Adherence_Block_Adminhtml_Adherence_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
+/**
+ * @author Ivan Semerenko <Semerenko888@yandex.ru>
+ * @copyright Copyright (c) 2017, Ivan Semerenko
+ */
+
+class Group_Adherence_Block_Adminhtml_Adherence_Edit
+    extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     public function __construct()
     {
@@ -12,7 +18,7 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit extends Mage_Adminhtml_Bloc
 
         $this->_addButton('save_apply', array(
             'class'   => 'save',
-            'label'   => Mage::helper('catalogrule')->__('Save and Apply'),
+            'label'   => Mage::helper('adherence')->__('Save and Apply'),
             'onclick' => "$('rule_auto_apply').value=1; editForm.submit()",
         ));
 
@@ -21,21 +27,18 @@ class Group_Adherence_Block_Adminhtml_Adherence_Edit extends Mage_Adminhtml_Bloc
 
         $this->_addButton('save_and_continue_edit', array(
             'class'   => 'save',
-            'label'   => Mage::helper('catalogrule')->__('Save and Continue Edit'),
+            'label'   => Mage::helper('adherence')->__('Save and Continue Edit'),
             'onclick' => 'editForm.submit($(\'edit_form\').action + \'back/edit/\')',
         ), 10);
     }
 
-    /**
-     * Get edit form container header text
-     *
-     * @return string
-     */
     public function getHeaderText()
     {
         if (Mage::registry('adherence_rule')->getId()) {
 
-            return Mage::helper('adherence')->__("Edit Rule '%s'", $this->escapeHtml(Mage::registry('adherence_rule')->getRuleName()));
+            return Mage::helper('adherence')
+                ->__("Edit Rule '%s'", $this->escapeHtml(Mage::registry('adherence_rule')
+                    ->getRuleName()));
         }
         else {
             return Mage::helper('adherence')->__('New Rule');
