@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <SVI_GroupAdherence>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SVI_GroupAdherence>
+    </modules>
+</config>

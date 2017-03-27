@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <group translate="title" module="adherence">
+            <title>Group Adherence</title>
+            <sort_order>99</sort_order>
+            <children>
+                <svi_groupAdherence translate="title" module="users">
+                    <title>Manage Rules</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/adherence</action>
+                </svi_groupAdherence>
+            </children>
+        </group>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <svi_groupAdherence translate="title" module="adherence">
+                                        <title>Group Adherence</title>
+                                        <sort_order>0</sort_order>
+                                    </svi_groupAdherence>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <group>
+                        <children>
+                            <svi_groupAdherence translate="title" module="adherence">
+                                <title>Manage Rules</title>
+                            </svi_groupAdherence>
+                        </children>
+                    </group>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
