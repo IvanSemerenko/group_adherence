@@ -19,7 +19,6 @@ class SVI_GroupAdherence_Block_Adminhtml_Adherence_Grid
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('svi_groupAdherence/adherence')->getCollection();
-        /* @var $collection Mage_Cms_Model_Mysql4_Block_Collection */
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
